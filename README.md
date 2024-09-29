@@ -2,6 +2,7 @@ Spot Vile Occurrences System
 Overview
 
 The Spot Vile Occurrences system is designed to analyze datasets related to pressure, resilience, and causal factors to identify high-risk zones where harmful behaviors—such as pedophilia—are more likely to emerge. The system does not pinpoint individuals, but rather focuses on identifying patterns in environments where pressure may culminate, creating potential hotspots for further investigation and awareness.
+
 CAUTION
 
 The system must be used responsibly and cautiously, as its results are sensitive. It is crucial to acknowledge that the same power to highlight risks could be misused to perpetuate or worsen oppression. Misinterpreting or abusing the system's output, especially if used to justify targeting or control, could intensify the very behaviors it aims to prevent. Therefore, all outputs must be handled ethically and with deep consideration of their real-world impact.
