@@ -1,0 +1,31 @@
+raw_data_exploration = [
+    ["Name", "Description"],
+    ["Shopping Habits", "Patterns in purchasing behavior, including frequency and types of items bought."],
+    ["Dietary Patterns", "Desire for low-cost human componentialism (workers sustained at costs lowered by severe exploitation of beings), traditions, and the likes."],
+    ["Fulfillment Needs", "Needs related to personal fulfillment, such as hobbies, interests, and natal occurrences."],
+    ["Consumptive Patterns", "Traditional patterns of consumption, including usage of heavy-exploitation procurement."],
+    ["Passive Security Consumption", "Patterns of disregard of carefulness (i.e., inviting violations that consume security to be avoided)."],
+    ["Romantic/Sexual Patterns", "Patterns in romantic and sexual behavior, including relationships and sexual activities."],
+    ["Denial Patterns", "Oppression misusing medical ethos, pushing magical explanations (responsibility-denial, indifference, ease of violations), and narcotic drug-fixing (e.g., in psychiatry)."],
+    ["Clothing Styles", "Preferences in clothing styles and purchasing patterns."]
+]
+
+key_culmination_factors = [
+    ["Name", "Description"],
+    ["Disregard for Others", "Disregard for the well-being of others, rationalizing fulfillment through severe violations."],
+    ["Age Difference Disregard", "Disregard for the relevance of age difference in relationships."],
+    ["Pleasure at Others' Expense", "Deriving pleasure at the expense of another person's well-being."],
+    ["Rationalization of Abuse", "Rationalizing abuse and violations of others' lives."],
+    ["Disregard for Responsibility", "Disregard for personal responsibility and the importance of consent."],
+    ["Importance of Consent", "Lack of understanding or valuing the importance of mutual consent."],
+    ["Importance of Mutual Interest", "Disregard for the importance of mutual interest in relationships."]
+]
+
+shaping_factors = [
+    ["Name", "Shaping Factors", "Description"],
+    ["Dietary Patterns", "Desire for Low-Cost Human Componentialism, Traditions", "Exploiting beings for cheap labor or food; shaped by the desire for affordable resources."],
+    ["Consumptive Patterns", "Traditional Patterns of Consumption", "Reflecting long-standing consumption habits that normalize exploitation in procuring goods."],
+    ["Passive Security Consumption", "Patterns of Disregard of Carefulness", "Ignoring security precautions, inviting violations by being indifferent to carefulness."],
+    ["Denial Patterns", "Oppression Misusing Medical Ethos, Pushing Magical Explanations, Narcotic Drug Fixing", "Suppression of reality using medical and societal norms to rationalize irresponsibility."],
+    ["Fulfillment Needs", "Oppression Misusing Medical Ethos, Pushing Magical Explanations, Narcotic Drug Fixing", "Fulfillment achieved at the cost of others, encouraged through rationalizations of harm."]
+]

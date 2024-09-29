@@ -1,0 +1,95 @@
+
+# --------------------------
+# Step 3.0: Calculating the Arisal of Pressures (Root Causes)
+# --------------------------
+def calculate_pressure_arisal(merged_data, causal_columns):
+    """
+    Calculate the arisal of pressures based on various causal factors.
+    :param merged_data: DataFrame containing causal factors.
+    :param causal_columns: List of column names representing factors contributing to pressure.
+    :return: DataFrame with a calculated arisal score.
+    """
+    # Normalize the causal factors to calculate their contribution to pressure
+    scaler = MinMaxScaler()
+    merged_data[causal_columns] = scaler.fit_transform(merged_data[causal_columns])
+
+    # Calculate the total arisal score by summing the normalized factors
+    merged_data['arisal_score'] = merged_data[causal_columns].sum(axis=1)
+    
+    # Factor the arisal score into the pressure score (optional scaling)
+    merged_data['pressure_score'] += merged_data['arisal_score'] * 0.5  # Adjust the multiplier as needed
+
+    return merged_data
+
+# --------------------------
+# Step 3.1: Identifying Pressures
+# --------------------------
+def identify_pressures(merged_data, threshold=0.75):
+    """
+    Identify areas with high pressure scores.
+    :param merged_data: DataFrame containing normalized pressure scores.
+    :param threshold: Threshold for high pressure areas (default is 75th percentile).
+    :return: DataFrame of high-pressure areas.
+    """
+    pressure_threshold = merged_data['pressure_score'].quantile(threshold)
+    high_pressure_areas = merged_data[merged_data['pressure_score'] >= pressure_threshold]
+    return high_pressure_areas
+
+# --------------------------
+# Step 3.2: Identifying Pressure Culmination
+# --------------------------
+def identify_pressure_culmination(high_pressure_areas, proximity_threshold=0.1):
+    """
+    Identify areas where pressures culminate by clustering areas that are close together and have high pressure.
+    :param high_pressure_areas: DataFrame of high-pressure areas.
+    :param proximity_threshold: Distance threshold to consider two areas as close (default is 0.1 degrees in lat/long).
+    :return: DataFrame of pressure culmination areas.
+    """
+    culminations = []
+    for i, row in high_pressure_areas.iterrows():
+        nearby = high_pressure_areas[(abs(high_pressure_areas['latitude'] - row['latitude']) <= proximity_threshold) &
+                                     (abs(high_pressure_areas['longitude'] - row['longitude']) <= proximity_threshold)]
+        culminations.append(nearby)
+
+    culmination_areas = pd.concat(culminations).drop_duplicates()
+    return culmination_areas
+
+# --------------------------
+# Step 3.3: Identifying Irresilience (Low Resilience)
+# --------------------------
+def identify_irresilience(merged_data, threshold=0.25):
+    """
+    Identify areas with low resilience scores.
+    :param merged_data: DataFrame containing normalized resilience scores.
+    :param threshold: Threshold for low resilience areas (default is 25th percentile).
+    :return: DataFrame of low-resilience areas.
+    """
+    resilience_threshold = merged_data['resilience_score'].quantile(threshold)
+    low_resilience_areas = merged_data[merged_data['resilience_score'] <= resilience_threshold]
+    return low_resilience_areas
+
+# --------------------------
+# Step 3.4: Identifying Overlaps Between High Pressure and Low Resilience
+# --------------------------
+def identify_pressure_resilience_overlap(high_pressure_areas, low_resilience_areas):
+    """
+    Identify overlaps between high-pressure and low-resilience areas.
+    :param high_pressure_areas: DataFrame of high-pressure areas.
+    :param low_resilience_areas: DataFrame of low-resilience areas.
+    :return: DataFrame of areas with both high pressure and low resilience.
+    """
+    overlap = pd.merge(high_pressure_areas, low_resilience_areas, on='location')
+    return overlap
+
+# --------------------------
+# Step 3.5: Identifying Growth of Risk (Risk Accumulation)
+# --------------------------
+def identify_growth_of_risk(overlap_data):
+    """
+    Calculate the growth of risk based on increasing pressure and low resilience.
+    :param overlap_data: DataFrame containing overlapping areas of high pressure and low resilience.
+    :return: DataFrame with risk growth score.
+    """
+    # Risk growth score can be calculated by amplifying the effect of both high pressure and low resilience
+    overlap_data['risk_growth'] = overlap_data['pressure_score'] * (1 - overlap_data['resilience_score']) * 2  # Arbitrarily doubling for emphasis
+    return overlap_data
